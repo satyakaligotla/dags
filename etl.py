@@ -1,5 +1,5 @@
 from sqlite3 import paramstyle
-import pymysql
+
 import json
 
 from datetime import datetime, timedelta
