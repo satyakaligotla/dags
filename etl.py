@@ -36,7 +36,7 @@ with DAG(
     t1_get_all_customers = MsSqlOperator(
         task_id = "get_all_customers",
         mssql_conn_id = "ARCH_POC_MS_SQL",
-        sql = "Select * from Customer",
+        sql = "Select * from SalesLT.Customer",
     )
 
 
