@@ -3,7 +3,6 @@ import json
 from datetime import datetime, timedelta
 from airflow import DAG
 
-from airflow.models.connection import Connection
 from airflow.providers.microsoft.mssql.hooks.mssql import MsSqlHook
 from airflow.providers.microsoft.mssql.operators.mssql import MsSqlOperator
 
@@ -34,26 +33,11 @@ with DAG(
     tags=['etl','bhhc','architecture','poc'],
 ) as dag:
 
-    conn = Connection(
-        conn_id="ARCH_AZURE_MSSQL",
-        conn_type="mysql",
-        description="ARCH_AZURE_MSSQL",
-        host="tcp:archpocsqlserver.database.windows.net",
-        login="archadmin",
-        password="tintin85!",
-        extra=json.dumps(dict(
-            port="1433", 
-            initial_catalog="archpocdb", 
-            persist_security_info="False",
-            MultipleActiveResultSets="False",
-            Encrypt="True",
-            TrustServerCertificate="False",
-            Connection_Timeout="30")),
-    )
-
     t1_get_all_customers = MsSqlOperator(
         task_id = "get_all_customers",
-        mssql_conn_id = "ARCH_AZURE_MSSQL",
+        mssql_conn_id = "ARCH_POC_MS_SQL",
         sql = "Select * from Customer",
         _hook = MsSqlHook(mssql_conn_id='ARCH_AZURE_MSSQL', schema='archpocdb'),
     )
+
+
