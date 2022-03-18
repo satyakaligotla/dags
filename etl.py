@@ -37,7 +37,6 @@ with DAG(
         task_id = "get_all_customers",
         mssql_conn_id = "ARCH_POC_MS_SQL",
         sql = "Select * from Customer",
-        _hook = MsSqlHook(mssql_conn_id='ARCH_AZURE_MSSQL', schema='archpocdb'),
     )
 
 
