@@ -1,7 +1,7 @@
 from datetime import datetime
 
 from airflow import DAG
-from airflow.providers.microsoft.azure.operator.azure_cosmos import AzureCosmosInsertDocumentOperator
+from airflow.providers.microsoft.azure.operators.cosmos import AzureCosmosInsertDocumentOperator
 
 with DAG(
     dag_id='cosmos',
